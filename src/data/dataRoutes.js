@@ -2,9 +2,10 @@ const { Router } = require("express")
 
 const bookData = Router()
 
-const { addBook, getBooks, updateBook, deleteBook } = require("./controllers")
+const { getMovie } = require("./controllers")
 
-//5.
+//5. GET - gets books that have been turned into movies from the database
+bookData.get("/getMovie", getMovie)
 
 //export
 module.exports = bookData

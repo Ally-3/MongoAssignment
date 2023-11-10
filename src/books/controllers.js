@@ -1,6 +1,7 @@
 // import/s:
 
 const Book = require("./model")
+const Data = require("../data/modelData")
 
 // controller 1 - POST - adds a book to the database // WORKING
 const addBook = async (req, res) => {
@@ -72,10 +73,26 @@ const deleteBook = async (req, res) => {
     }
 };
 
+// controller 5 - GET - gets books that have been turned into movies 
+const getMovie = async (req, res) => {
+    try {
+        const getAllMovies = await Data.find({});
+
+        const successResponse = {
+            message: "Success, movies found",
+            movies: getAllMovies
+        };
+        res.status(200).json(successResponse);
+    } catch (err) {
+        console.error("Error getting movies:", err);
+        res.status(500).json({ error: "failed to find movies"});
+    }
+};
 // exports:
 module.exports = {
     addBook,
     getBooks,
     updateBook,
-    deleteBook
+    deleteBook,
+    getMovie
 };
