@@ -5,10 +5,9 @@ const Booklist = () => {
   const [newBook, setNewBook] = useState({ title: '', author: '' });
 
   useEffect(() => {
-    // Fetch books from the Node.js server
     fetch('http://localhost:5002')
       .then(response => response.json())
-      .then(data => setBooks(data))
+      .then(setBooks)
       .catch(error => console.error('Error fetching books:', error));
   }, []);
 
@@ -19,7 +18,7 @@ const Booklist = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(addBook),
+        body: JSON.stringify(newBook),
       });
       const data = await response.json();
       setBooks([...books, data]);
