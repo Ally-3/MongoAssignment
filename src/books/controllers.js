@@ -42,7 +42,7 @@ const getBooks = async (req, res) => {
 // controller 3 - PUT - updates a book's author // WORKING
 const updateBook = async (req, res) => {
     try {
-        const updatedBook = await Book.updateOne(
+        const updatedBook = await Book.findOneAndUpdate(
             { title: req.body.title },
             { author: req.body.newAuthor }
         );
